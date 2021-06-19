@@ -5,4 +5,4 @@
 ### Features
 
 - [x] Using Alamofire for Network calls.
-- [x] Loading image from either KingFisher https://github.com/onevcat/Kingfisher#features.
+- [x] Loading image from KingFisher https://github.com/onevcat/Kingfisher#features.
