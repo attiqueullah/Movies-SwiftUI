@@ -1,5 +1,6 @@
 # Movies-SwiftUI
-# ![Simulator Screen Shot - iPhone 12 - 2021-06-19 at 13 30 02](https://user-images.githubusercontent.com/5801649/122636452-cdee0500-d102-11eb-968b-8d8848bbdaae.png) =100x20
+# ![Simulator Screen Shot - iPhone 12 - 2021-06-19 at 13 30 02](https://user-images.githubusercontent.com/5801649/122636626-ab102080-d103-11eb-9431-e637ff2980b2.png)
+
 
 ### Features
 
