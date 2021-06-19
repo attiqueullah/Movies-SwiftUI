@@ -39,13 +39,11 @@ extension MoviesListViewModel {
         case idle
         case loading
         case loaded([ListItem])
-        case loadMovieDetail(Int)
         case error(Error)
     }
     
     enum Event {
         case onAppear
-        case onSelectMovie(Int)
         case onMoviesLoaded([ListItem])
         case onFailedToLoadMovies(Error)
     }
@@ -85,15 +83,7 @@ extension MoviesListViewModel {
             default:
                 return state
             }
-        case .loaded:
-            switch event {
-            case .onSelectMovie(let movieId):
-                return .loadMovieDetail(movieId)
-            default:
-                return state
-            }
-        case .loadMovieDetail(_):
-            return state
+        case .loaded:return state
         case .error: return state
         
         }

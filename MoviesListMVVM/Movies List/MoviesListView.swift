@@ -26,7 +26,6 @@ struct MoviesListView: View {
         case .idle: return Color.clear.eraseToAnyView()
         case .loading: return Spinner(isAnimating: true, style: .large).eraseToAnyView()
         case .loaded(let movies): return listView(movies: movies).eraseToAnyView()
-        case .loadMovieDetail(let movieId): return MoviesDetailView(viewModel: MoviesDetailViewModel(movieID: movieId)).eraseToAnyView()
         case .error(let error) : return Text(error.localizedDescription).eraseToAnyView()
     }
     }
@@ -40,7 +39,6 @@ struct MoviesListView: View {
                             label: {
                                 MovieListItemView(movie: movie)
                                     .padding([.leading,.trailing],20)
-                                
                             })
                     }
                 }
