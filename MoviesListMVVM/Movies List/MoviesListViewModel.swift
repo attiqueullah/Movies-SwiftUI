@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 import Combine
 
 class MoviesListViewModel : ObservableObject {
     
     @Published var state : State = .idle
-    
+   
     private var bag = Set<AnyCancellable>()
     private let input = PassthroughSubject<Event, Never>()
     
@@ -38,6 +39,7 @@ extension MoviesListViewModel {
         case idle
         case loading
         case loaded([ListItem])
+        case loadMovieDetail(Int)
         case error(Error)
     }
     
@@ -83,8 +85,17 @@ extension MoviesListViewModel {
             default:
                 return state
             }
-        case .loaded: return state
+        case .loaded:
+            switch event {
+            case .onSelectMovie(let movieId):
+                return .loadMovieDetail(movieId)
+            default:
+                return state
+            }
+        case .loadMovieDetail(_):
+            return state
         case .error: return state
+        
         }
     }
     static func whenLoading() -> Feedback<State,Event>{
@@ -104,4 +115,17 @@ extension MoviesListViewModel {
     static func userInput(input: AnyPublisher<Event, Never>) -> Feedback<State, Event> {
         Feedback (run: { _ in input })
     }
+}
+
+extension MoviesListViewModel {
+    func movieDetailView(withMovieId ID: Int) -> some View {
+        return MovieBuilder.makeMovieDetailView(withMovieId: ID)
+    }
+}
+
+enum MovieBuilder {
+  static func makeMovieDetailView(withMovieId ID: Int) -> some View {
+    let viewModel = MoviesDetailViewModel(movieID: ID)
+    return MoviesDetailView(viewModel: viewModel)
+  }
 }

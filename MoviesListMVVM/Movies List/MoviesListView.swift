@@ -11,6 +11,7 @@ import Kingfisher
 struct MoviesListView: View {
     
     @ObservedObject var viewModel: MoviesListViewModel
+    @State var movieDetails: Bool = false
     
     var body: some View {
         NavigationView {
@@ -25,6 +26,7 @@ struct MoviesListView: View {
         case .idle: return Color.clear.eraseToAnyView()
         case .loading: return Spinner(isAnimating: true, style: .large).eraseToAnyView()
         case .loaded(let movies): return listView(movies: movies).eraseToAnyView()
+        case .loadMovieDetail(let movieId): return MoviesDetailView(viewModel: MoviesDetailViewModel(movieID: movieId)).eraseToAnyView()
         case .error(let error) : return Text(error.localizedDescription).eraseToAnyView()
     }
     }
@@ -34,12 +36,12 @@ struct MoviesListView: View {
                 VStack {
                     ForEach(movies) { movie in
                         NavigationLink(
-                            destination: MoviesDetailView(viewModel: MoviesDetailViewModel(movieID: movie.id)),
+                            destination: viewModel.movieDetailView(withMovieId: movie.id),
                             label: {
                                 MovieListItemView(movie: movie)
                                     .padding([.leading,.trailing],20)
+                                
                             })
-                        
                     }
                 }
         }
