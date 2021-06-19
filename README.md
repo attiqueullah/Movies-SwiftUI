@@ -5,6 +5,6 @@
 ### Features
 
 - [x] Using MVVM Architecture.
-- [x] Using SWIFTUI andCombine.
+- [x] Using SWIFTUI and Combine frameworks.
 - [x] Using Alamofire for Network calls.
 - [x] Loading image from KingFisher https://github.com/onevcat/Kingfisher#features.
